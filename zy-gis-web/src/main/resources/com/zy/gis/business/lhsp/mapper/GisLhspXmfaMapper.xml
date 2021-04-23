@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.gis.business.lhsp.mapper.GisLhspXmfaMapper">
+    <sql id="Base_Column_List">
+        GIS_LHSP_XMFA.ID,GIS_LHSP_XMFA.FAMC,GIS_LHSP_XMFA.ZL,GIS_LHSP_XMFA.MJ,GIS_LHSP_XMFA.MAPPING_VALUE,GIS_LHSP_XMFA.MAPPING_KEY,GIS_LHSP_XMFA.CREATE_TIME,GIS_LHSP_XMFA.CREATE_USER,GIS_LHSP_XMFA.MODIFY_TIME,GIS_LHSP_XMFA.MODIFY_USER,GIS_LHSP_XMFA.STATUS,GIS_LHSP_XMFA.DEL_FLAG,GIS_LHSP_XMFA.LHSP_XMXX_ID,GIS_LHSP_XMFA.LAND_CODE,GIS_LHSP_XMFA.ISSUE_TYPE,GIS_LHSP_XMFA.GPFS,GIS_LHSP_XMFA.KFQ,GIS_LHSP_XMFA.TDYT,GIS_LHSP_XMFA.DXKJYT,GIS_LHSP_XMFA.RJL,GIS_LHSP_XMFA.GPQSJ,GIS_LHSP_XMFA.GPQSDJ,GIS_LHSP_XMFA.RDJ,GIS_LHSP_XMFA.ZGXJ,GIS_LHSP_XMFA.BLLX,GIS_LHSP_XMFA.NGYZDBH,GIS_LHSP_XMFA.NBDW,GIS_LHSP_XMFA.NBLX,GIS_LHSP_XMFA.DJQS,GIS_LHSP_XMFA.XCQK,GIS_LHSP_XMFA.AQQQK,GIS_LHSP_XMFA.JZGD,GIS_LHSP_XMFA.JZMD,GIS_LHSP_XMFA.LDL,GIS_LHSP_XMFA.DXKJ,GIS_LHSP_XMFA.OTHER,GIS_LHSP_XMFA.PGZJ,GIS_LHSP_XMFA.PGDJ,GIS_LHSP_XMFA.TDJK,GIS_LHSP_XMFA.GHYT,GIS_LHSP_XMFA.ZYTRJL,GIS_LHSP_XMFA.QSDW,GIS_LHSP_XMFA.SSPC,GIS_LHSP_XMFA.BCFY,GIS_LHSP_XMFA.AZQ,GIS_LHSP_XMFA.GZFAPH,GIS_LHSP_XMFA.TDSYZ,GIS_LHSP_XMFA.SYQLX,GIS_LHSP_XMFA.TDZH,GIS_LHSP_XMFA.SGBC,GIS_LHSP_XMFA.XGHYU,GIS_LHSP_XMFA.YTXH,GIS_LHSP_XMFA.MAPPING_YT,GIS_LHSP_XMFA.TDYT_CODE,GIS_LHSP_XMFA.SIDE_TDYT,GIS_LHSP_XMFA.SIDE_TDYT_CODE,GIS_LHSP_XMFA.COMPATIBLE,GIS_LHSP_XMFA.TMP_KEY,GIS_LHSP_XMFA.GHYT_CODE,GIS_LHSP_XMFA.XGHYU_CODE
+    </sql>
+    <sql id="Column_List">
+        <include refid="Base_Column_List"/>
+    </sql>
+    <sql id="pageParams">
+        <if test="params != null">
+            <if test="params.beginDate != null"> and GIS_LHSP_XMFA.create_time &gt;= #{params.beginDate} </if>
+            <if test="params.endDate != null"> and GIS_LHSP_XMFA.create_time &lt;= #{params.endDate} </if>
+            <if test="params.id != null"> and GIS_LHSP_XMFA.ID = #{params.id} </if>
+            <if test="params.famc != null"> and GIS_LHSP_XMFA.FAMC = #{params.famc} </if>
+            <if test="params.zl != null"> and GIS_LHSP_XMFA.ZL = #{params.zl} </if>
+            <if test="params.mj != null"> and GIS_LHSP_XMFA.MJ = #{params.mj} </if>
+            <if test="params.mappingValue != null"> and GIS_LHSP_XMFA.MAPPING_VALUE = #{params.mappingValue} </if>
+            <if test="params.mappingKey != null"> and GIS_LHSP_XMFA.MAPPING_KEY = #{params.mappingKey} </if>
+            <if test="params.createTime != null"> and GIS_LHSP_XMFA.CREATE_TIME = #{params.createTime} </if>
+            <if test="params.createUser != null"> and GIS_LHSP_XMFA.CREATE_USER = #{params.createUser} </if>
+            <if test="params.modifyTime != null"> and GIS_LHSP_XMFA.MODIFY_TIME = #{params.modifyTime} </if>
+            <if test="params.modifyUser != null"> and GIS_LHSP_XMFA.MODIFY_USER = #{params.modifyUser} </if>
+            <if test="params.status != null"> and GIS_LHSP_XMFA.STATUS = #{params.status} </if>
+            <if test="params.delFlag != null"> and GIS_LHSP_XMFA.DEL_FLAG = #{params.delFlag} </if>
+            <if test="params.lhspXmxxId != null"> and GIS_LHSP_XMFA.LHSP_XMXX_ID = #{params.lhspXmxxId} </if>
+            <if test="params.landCode != null"> and GIS_LHSP_XMFA.LAND_CODE = #{params.landCode} </if>
+            <if test="params.issueType != null"> and GIS_LHSP_XMFA.ISSUE_TYPE = #{params.issueType} </if>
+            <if test="params.gpfs != null"> and GIS_LHSP_XMFA.GPFS = #{params.gpfs} </if>
+            <if test="params.kfq != null"> and GIS_LHSP_XMFA.KFQ = #{params.kfq} </if>
+            <if test="params.tdyt != null"> and GIS_LHSP_XMFA.TDYT = #{params.tdyt} </if>
+            <if test="params.dxkjyt != null"> and GIS_LHSP_XMFA.DXKJYT = #{params.dxkjyt} </if>
+            <if test="params.rjl != null"> and GIS_LHSP_XMFA.RJL = #{params.rjl} </if>
+            <if test="params.gpqsj != null"> and GIS_LHSP_XMFA.GPQSJ = #{params.gpqsj} </if>
+            <if test="params.gpqsdj != null"> and GIS_LHSP_XMFA.GPQSDJ = #{params.gpqsdj} </if>
+            <if test="params.rdj != null"> and GIS_LHSP_XMFA.RDJ = #{params.rdj} </if>
+            <if test="params.zgxj != null"> and GIS_LHSP_XMFA.ZGXJ = #{params.zgxj} </if>
+            <if test="params.bllx != null"> and GIS_LHSP_XMFA.BLLX = #{params.bllx} </if>
+            <if test="params.ngyzdbh != null"> and GIS_LHSP_XMFA.NGYZDBH = #{params.ngyzdbh} </if>
+            <if test="params.nbdw != null"> and GIS_LHSP_XMFA.NBDW = #{params.nbdw} </if>
+            <if test="params.nblx != null"> and GIS_LHSP_XMFA.NBLX = #{params.nblx} </if>
+            <if test="params.djqs != null"> and GIS_LHSP_XMFA.DJQS = #{params.djqs} </if>
+            <if test="params.xcqk != null"> and GIS_LHSP_XMFA.XCQK = #{params.xcqk} </if>
+            <if test="params.aqqqk != null"> and GIS_LHSP_XMFA.AQQQK = #{params.aqqqk} </if>
+            <if test="params.jzgd != null"> and GIS_LHSP_XMFA.JZGD = #{params.jzgd} </if>
+            <if test="params.jzmd != null"> and GIS_LHSP_XMFA.JZMD = #{params.jzmd} </if>
+            <if test="params.ldl != null"> and GIS_LHSP_XMFA.LDL = #{params.ldl} </if>
+            <if test="params.dxkj != null"> and GIS_LHSP_XMFA.DXKJ = #{params.dxkj} </if>
+            <if test="params.other != null"> and GIS_LHSP_XMFA.OTHER = #{params.other} </if>
+            <if test="params.pgzj != null"> and GIS_LHSP_XMFA.PGZJ = #{params.pgzj} </if>
+            <if test="params.pgdj != null"> and GIS_LHSP_XMFA.PGDJ = #{params.pgdj} </if>
+            <if test="params.tdjk != null"> and GIS_LHSP_XMFA.TDJK = #{params.tdjk} </if>
+            <if test="params.ghyt != null"> and GIS_LHSP_XMFA.GHYT = #{params.ghyt} </if>
+            <if test="params.zytrjl != null"> and GIS_LHSP_XMFA.ZYTRJL = #{params.zytrjl} </if>
+            <if test="params.qsdw != null"> and GIS_LHSP_XMFA.QSDW = #{params.qsdw} </if>
+            <if test="params.sspc != null"> and GIS_LHSP_XMFA.SSPC = #{params.sspc} </if>
+            <if test="params.bcfy != null"> and GIS_LHSP_XMFA.BCFY = #{params.bcfy} </if>
+            <if test="params.azq != null"> and GIS_LHSP_XMFA.AZQ = #{params.azq} </if>
+            <if test="params.gzfaph != null"> and GIS_LHSP_XMFA.GZFAPH = #{params.gzfaph} </if>
+            <if test="params.tdsyz != null"> and GIS_LHSP_XMFA.TDSYZ = #{params.tdsyz} </if>
+            <if test="params.syqlx != null"> and GIS_LHSP_XMFA.SYQLX = #{params.syqlx} </if>
+            <if test="params.tdzh != null"> and GIS_LHSP_XMFA.TDZH = #{params.tdzh} </if>
+            <if test="params.sgbc != null"> and GIS_LHSP_XMFA.SGBC = #{params.sgbc} </if>
+            <if test="params.xghyu != null"> and GIS_LHSP_XMFA.XGHYU = #{params.xghyu} </if>
+            <if test="params.ytxh != null"> and GIS_LHSP_XMFA.YTXH = #{params.ytxh} </if>
+            <if test="params.mappingYt != null"> and GIS_LHSP_XMFA.MAPPING_YT = #{params.mappingYt} </if>
+            <if test="params.tdytCode != null"> and GIS_LHSP_XMFA.TDYT_CODE = #{params.tdytCode} </if>
+            <if test="params.sideTdyt != null"> and GIS_LHSP_XMFA.SIDE_TDYT = #{params.sideTdyt} </if>
+            <if test="params.sideTdytCode != null"> and GIS_LHSP_XMFA.SIDE_TDYT_CODE = #{params.sideTdytCode} </if>
+            <if test="params.compatible != null"> and GIS_LHSP_XMFA.COMPATIBLE = #{params.compatible} </if>
+            <if test="params.tmpKey != null"> and GIS_LHSP_XMFA.TMP_KEY = #{params.tmpKey} </if>
+            <if test="params.ghytCode != null"> and GIS_LHSP_XMFA.GHYT_CODE = #{params.ghytCode} </if>
+            <if test="params.xghyuCode != null"> and GIS_LHSP_XMFA.XGHYU_CODE = #{params.xghyuCode} </if>
+        </if>
+    </sql>
+    <insert id="insert">
+        insert into GIS_LHSP_XMFA(<include refid="Base_Column_List"></include>) values
+        (#{id},#{famc},#{zl},#{mj},#{mappingValue},#{mappingKey},#{createTime},#{createUser},#{modifyTime},#{modifyUser},#{status},#{delFlag},#{lhspXmxxId},#{landCode},#{issueType},#{gpfs},#{kfq},#{tdyt},#{dxkjyt},#{rjl},#{gpqsj},#{gpqsdj},#{rdj},#{zgxj},#{bllx},#{ngyzdbh},#{nbdw},#{nblx},#{djqs},#{xcqk},#{aqqqk},#{jzgd},#{jzmd},#{ldl},#{dxkj},#{other},#{pgzj},#{pgdj},#{tdjk},#{ghyt},#{zytrjl},#{qsdw},#{sspc},#{bcfy},#{azq},#{gzfaph},#{tdsyz},#{syqlx},#{tdzh},#{sgbc},#{xghyu},#{ytxh},#{mappingYt},#{tdytCode},#{sideTdyt},#{sideTdytCode},#{compatible},#{tmpKey},#{ghytCode},#{xghyuCode})
+    </insert>
+    <update id="update">
+        update GIS_LHSP_XMFA set 
+            FAMC = #{famc},ZL = #{zl},MJ = #{mj},MAPPING_VALUE = #{mappingValue},MAPPING_KEY = #{mappingKey},CREATE_TIME = #{createTime},CREATE_USER = #{createUser},MODIFY_TIME = #{modifyTime},MODIFY_USER = #{modifyUser},STATUS = #{status},DEL_FLAG = #{delFlag},LHSP_XMXX_ID = #{lhspXmxxId},LAND_CODE = #{landCode},ISSUE_TYPE = #{issueType},GPFS = #{gpfs},KFQ = #{kfq},TDYT = #{tdyt},DXKJYT = #{dxkjyt},RJL = #{rjl},GPQSJ = #{gpqsj},GPQSDJ = #{gpqsdj},RDJ = #{rdj},ZGXJ = #{zgxj},BLLX = #{bllx},NGYZDBH = #{ngyzdbh},NBDW = #{nbdw},NBLX = #{nblx},DJQS = #{djqs},XCQK = #{xcqk},AQQQK = #{aqqqk},JZGD = #{jzgd},JZMD = #{jzmd},LDL = #{ldl},DXKJ = #{dxkj},OTHER = #{other},PGZJ = #{pgzj},PGDJ = #{pgdj},TDJK = #{tdjk},GHYT = #{ghyt},ZYTRJL = #{zytrjl},QSDW = #{qsdw},SSPC = #{sspc},BCFY = #{bcfy},AZQ = #{azq},GZFAPH = #{gzfaph},TDSYZ = #{tdsyz},SYQLX = #{syqlx},TDZH = #{tdzh},SGBC = #{sgbc},XGHYU = #{xghyu},YTXH = #{ytxh},MAPPING_YT = #{mappingYt},TDYT_CODE = #{tdytCode},SIDE_TDYT = #{sideTdyt},SIDE_TDYT_CODE = #{sideTdytCode},COMPATIBLE = #{compatible},TMP_KEY = #{tmpKey},GHYT_CODE = #{ghytCode},XGHYU_CODE = #{xghyuCode}
+        where id = #{id}
+    </update>
+    <update id="updateSelective">
+        update GIS_LHSP_XMFA 
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="famc != null"> FAMC = #{famc}, </if>
+            <if test="zl != null"> ZL = #{zl}, </if>
+            <if test="mj != null"> MJ = #{mj}, </if>
+            <if test="mappingValue != null"> MAPPING_VALUE = #{mappingValue}, </if>
+            <if test="mappingKey != null"> MAPPING_KEY = #{mappingKey}, </if>
+            <if test="createTime != null"> CREATE_TIME = #{createTime}, </if>
+            <if test="createUser != null"> CREATE_USER = #{createUser}, </if>
+            <if test="modifyTime != null"> MODIFY_TIME = #{modifyTime}, </if>
+            <if test="modifyUser != null"> MODIFY_USER = #{modifyUser}, </if>
+            <if test="status != null"> STATUS = #{status}, </if>
+            <if test="delFlag != null"> DEL_FLAG = #{delFlag}, </if>
+            <if test="lhspXmxxId != null"> LHSP_XMXX_ID = #{lhspXmxxId}, </if>
+            <if test="landCode != null"> LAND_CODE = #{landCode}, </if>
+            <if test="issueType != null"> ISSUE_TYPE = #{issueType}, </if>
+            <if test="gpfs != null"> GPFS = #{gpfs}, </if>
+            <if test="kfq != null"> KFQ = #{kfq}, </if>
+            <if test="tdyt != null"> TDYT = #{tdyt}, </if>
+            <if test="dxkjyt != null"> DXKJYT = #{dxkjyt}, </if>
+            <if test="rjl != null"> RJL = #{rjl}, </if>
+            <if test="gpqsj != null"> GPQSJ = #{gpqsj}, </if>
+            <if test="gpqsdj != null"> GPQSDJ = #{gpqsdj}, </if>
+            <if test="rdj != null"> RDJ = #{rdj}, </if>
+            <if test="zgxj != null"> ZGXJ = #{zgxj}, </if>
+            <if test="bllx != null"> BLLX = #{bllx}, </if>
+            <if test="ngyzdbh != null"> NGYZDBH = #{ngyzdbh}, </if>
+            <if test="nbdw != null"> NBDW = #{nbdw}, </if>
+            <if test="nblx != null"> NBLX = #{nblx}, </if>
+            <if test="djqs != null"> DJQS = #{djqs}, </if>
+            <if test="xcqk != null"> XCQK = #{xcqk}, </if>
+            <if test="aqqqk != null"> AQQQK = #{aqqqk}, </if>
+            <if test="jzgd != null"> JZGD = #{jzgd}, </if>
+            <if test="jzmd != null"> JZMD = #{jzmd}, </if>
+            <if test="ldl != null"> LDL = #{ldl}, </if>
+            <if test="dxkj != null"> DXKJ = #{dxkj}, </if>
+            <if test="other != null"> OTHER = #{other}, </if>
+            <if test="pgzj != null"> PGZJ = #{pgzj}, </if>
+            <if test="pgdj != null"> PGDJ = #{pgdj}, </if>
+            <if test="tdjk != null"> TDJK = #{tdjk}, </if>
+            <if test="ghyt != null"> GHYT = #{ghyt}, </if>
+            <if test="zytrjl != null"> ZYTRJL = #{zytrjl}, </if>
+            <if test="qsdw != null"> QSDW = #{qsdw}, </if>
+            <if test="sspc != null"> SSPC = #{sspc}, </if>
+            <if test="bcfy != null"> BCFY = #{bcfy}, </if>
+            <if test="azq != null"> AZQ = #{azq}, </if>
+            <if test="gzfaph != null"> GZFAPH = #{gzfaph}, </if>
+            <if test="tdsyz != null"> TDSYZ = #{tdsyz}, </if>
+            <if test="syqlx != null"> SYQLX = #{syqlx}, </if>
+            <if test="tdzh != null"> TDZH = #{tdzh}, </if>
+            <if test="sgbc != null"> SGBC = #{sgbc}, </if>
+            <if test="xghyu != null"> XGHYU = #{xghyu}, </if>
+            <if test="ytxh != null"> YTXH = #{ytxh}, </if>
+            <if test="mappingYt != null"> MAPPING_YT = #{mappingYt}, </if>
+            <if test="tdytCode != null"> TDYT_CODE = #{tdytCode}, </if>
+            <if test="sideTdyt != null"> SIDE_TDYT = #{sideTdyt}, </if>
+            <if test="sideTdytCode != null"> SIDE_TDYT_CODE = #{sideTdytCode}, </if>
+            <if test="compatible != null"> COMPATIBLE = #{compatible}, </if>
+            <if test="tmpKey != null"> TMP_KEY = #{tmpKey}, </if>
+            <if test="ghytCode != null"> GHYT_CODE = #{ghytCode}, </if>
+            <if test="xghyuCode != null"> XGHYU_CODE = #{xghyuCode}, </if>
+        </trim>
+        where id = #{id}
+    </update>
+    <update id="delete">
+        update GIS_LHSP_XMFA set DEL_FLAG = 1 where id = #{id}
+    </update>
+    <update id="deletes">
+        update GIS_LHSP_XMFA set DEL_FLAG = 1 where id in 
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    <select id="getById" resultType="com.zy.gis.business.lhsp.entity.GisLhspXmfa">
+        select <include refid="Base_Column_List" /> from GIS_LHSP_XMFA where id = #{id}
+    </select>
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(1) from GIS_LHSP_XMFA where 1 = 1 <include refid="pageParams"/>
+    </select>
+    <select id="list" resultType="com.zy.gis.business.lhsp.vo.GisLhspXmfaVo">
+        select <include refid="Column_List" /> from GIS_LHSP_XMFA
+        where 1 = 1 <include refid="pageParams"/>
+        order by to_number(regexp_replace(regexp_replace(GIS_LHSP_XMFA.ytxh,'-', '.'),'[^\u4e00-\u9fa5,^.]', '')) asc
+
+    </select>
+</mapper>

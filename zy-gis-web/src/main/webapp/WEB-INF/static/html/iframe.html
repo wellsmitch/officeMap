@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var basePath = "onemap";
+    </script>
+    <script type="text/javascript" src="../lib/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery.ext.js"></script>
+    <script type="text/javascript" src="../lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js"></script>
+    <script type="text/javascript" src="../lib/layui/xm-select.js"></script>
+    <script type="text/javascript" src="../lib/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script type="text/javascript" src="../lib/vue/vue.min.js"></script>
+    <script type="text/javascript" src="../lib/util/zy.util.provide.js"></script>
+    <script type="text/javascript" src="../lib/util/zy.util.common.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="file" id="coordinatesFile" @change="coordinatesFileChange($event)"
+           style="display: none;">
+    <button @click="importRange()">上传坐标</button>
+    <button @click="draw()">画图</button>
+    <button @click="edit()">编辑图元</button>
+    <button @click="editEnd()">编辑完成</button>
+    <button @click="overlayPolygon()">WPS叠加分析</button>
+    <button @click="analysisRequest()">国土空间叠加分析</button>
+    <button @click="search()">查询信息</button>
+    <button @click="getPosition()">获取坐标</button>
+    <button @click="fixedPosition()">方案定位</button>
+    <button @click="insertFeature()">图元入库</button>
+    <button @click="updateFeature()">图元修改入库</button>
+    <button @click="deleteFeatureByFid()">图元删除</button>
+    <button @click="exportFeatureJson()">图元导出</button>
+</div>
+<div>
+    <iframe id="iframe" src="/onemap/gis/map/index/fzxz" height="800" width="1200"></iframe>
+</div>
+
+</body>
+<script type="text/javascript">
+    var iframeObj = $("#iframe");
+    var iframeWindow = iframeObj[0].contentWindow;
+    var subjectInfo;
+    var gisService;
+    var currInfo;
+
+    function mapLoadEnd() {
+        gisService = iframeWindow.getGisService();
+        subjectInfo = iframeWindow.subjectInfo;
+        currInfo = {
+            coordinate: [[[38460513.28654311, 3838652.5571823744], [38460634.20939467, 3837927.0200729994], [38461104.46492852, 3837980.763562583], [38460956.67033217, 3838854.095268312], [38460513.28654311, 3838652.5571823744]]],
+            mappingId: 160,
+            项目选址名称: '侯寨森林公园周边选址333',
+            // 坐落: 'xxx',
+            面积_: '200022',
+            layer: "X410100XMXZ2020GHBHXMXZ",
+            fid: 13
+        };
+    }
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            upload() {
+                gisService.drawFeature(currInfo);
+            },
+            draw() {
+                gisService.drawPolygon(currInfo.layer, function (res) {
+                    currInfo = res;
+                    gisService.modifyFeature(currInfo);
+                });
+            },
+            edit() {
+                gisService.modifyFeature(currInfo);
+            },
+            editEnd() {
+                gisService.modifyFeatureEnd(currInfo);
+            },
+            overlayPolygon() {
+                var analysisLayerList = subjectInfo.layerInfoList.filter(function (item) {
+                    return item.type == 0 && item.analysis;
+                });
+                analysisLayerList.forEach(function (layer) {
+                    layer.coordinate = currInfo.coordinate;
+                    gisService.overlayPolygon(layer, function (result) {
+                        result.landList && result.landList.forEach(function (land) {
+                            land.layer = layer;
+                            gisService.drawFeature(land);
+                        });
+                    });
+                });
+            },
+            analysisRequest() {
+                var analysisLayerList = subjectInfo.layerInfoList.filter(function (item) {
+                    return item.type == 0 && item.analysis;
+                });
+                analysisLayerList.forEach(function (layer) {
+                    layer.coordinate = currInfo.coordinate;
+                    gisService.analysisClipCondition(layer, function (res) {
+                        console.log(res);
+                    });
+                });
+            },
+            search() {
+                var params = {layer: currInfo.layer, coordinates: "38475348.72920159,3849420.556847228"};
+                gisService.queryFeature(params, function (result) {
+                    console.log(result);
+                    if (result.success) {
+                        result.data.forEach(function (data) {
+                            gisService.drawFeature(data);
+                        });
+                    }
+                });
+            },
+            getPosition() {
+                var feature = gisService.getOlFeature(currInfo);
+                var coordinates = feature.getGeometry().getCoordinates();
+                console.log(gisService.coordinateCorrect(coordinates));
+            },
+            fixedPosition() {
+                var params = {layer: currInfo.layer, query_where: "ID in (2,3,4)"};
+                gisService.queryFeature(params, function (res) {
+                    if (res.success) {
+                        var mappingIds = [];
+                        res.data.forEach(function (item) {
+                            gisService.drawFeature(item);
+                            gisService.modifyFeature(item);
+                            mappingIds.push(item.mappingId);
+                        })
+                        gisService.fixedPosition(currInfo.layer, mappingIds);
+                    }
+                    console.log(res);
+                });
+            },
+            insertFeature() {
+                console.log(currInfo);
+                gisService.insertFeature(currInfo, function (res) {
+                    console.log(res);
+                });
+            },
+            updateFeature() {
+                console.log(currInfo);
+                gisService.updateFeature(currInfo, function (res) {
+                    console.log(res);
+                });
+            },
+            deleteFeatureByFid() {
+                gisService.deleteFeatureByFid(currInfo, function (res) {
+                    console.log(res);
+                });
+            },
+            exportFeatureJson() {
+                gisService.exportFeatureJson(currInfo, "test.json");
+            },
+            importRange: function () {
+                $("#coordinatesFile").click();
+            },
+            coordinatesFileChange: function (e) {
+                var that = this;
+                var files = e.target.files;
+                if (files != null && files.length > 0) {
+                    gisService.fileResolve(files[0], function (infoList) {
+                        var featureList = [];
+                        infoList.forEach(function (info) {
+                            var coordinate = info.coordinate;
+                            var feature = Object.assign({
+                                coordinate: coordinate,
+                                layer: currInfo.layer,
+                                mappingId: gisService.generateUUID('long')
+                            }, that.currXmfa);
+                            gisService.drawFeature(feature);
+                            featureList.push(feature);
+                        });
+                    });
+                }
+            }
+        }
+    });
+</script>
+</html>

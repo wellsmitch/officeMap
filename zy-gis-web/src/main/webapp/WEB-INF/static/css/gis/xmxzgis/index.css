@@ -1,0 +1,284 @@
+.toolbar .tool_con div::selection {
+    /*background: #fff;*/
+    color: #000000;
+}
+
+.zyAddLabel {
+    padding: 0 3px;
+    width: 70px;
+    text-align: center;
+}
+
+.zyAddInput {
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    line-height: 28px;
+    height: 28px;
+    width: calc(100% - 90px);
+    text-indent: 10px;
+}
+
+.zyAddItem {
+    padding: 12px 0;
+}
+
+.zyAddItem > div {
+    margin-bottom: 2px;
+    line-height: 28px;
+}
+
+.addSave, .addCancel, .confictAnalysis, .projectSite, .newProjectItem, .projectDelete {
+    width: 80px;
+    text-align: center;
+    line-height: 28px;
+    color: #fff;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+.newProjectItem {
+    width: 100px;
+    background: #00adbf;
+}
+
+.addSave, .confictAnalysis {
+    background: #009688;
+}
+
+.confictAnalysis {
+    background: #d43f3a
+}
+
+.addPanel {
+    text-align: center;
+    cursor: pointer;
+}
+
+.addAction {
+    display: inline-block;
+}
+
+.projectTitle {
+    font-size: 14px;
+    /* font-weight: bold; */
+    line-height: 28px;
+    color: #272d4f;
+    background: rgba(251, 251, 251, 1);
+}
+
+.addedProject {
+    /*padding: 0 10px;*/
+}
+
+.proSingleItem {
+    color: #868686;
+    font-size: 13px;
+    width: calc(100% - 88px);
+}
+
+.actionBtn {
+    width: 84px;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.actionBtn td {
+    padding: 1px;
+}
+
+.actionBtn td > div {
+    background: #f4f4f4;
+    color: #8c8c8c;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    width: 24px;
+}
+
+.actionBtn td div:hover {
+    background: #e8e8e8;
+    cursor: pointer;
+    color: #1a90ff;
+    font-weight: bold;
+}
+
+
+.actionBtn td .delProBtn:hover {
+    background: #e8e8e8;
+    cursor: pointer;
+    color: #ff4143;
+    font-weight: bold;
+}
+
+.proSingleItem tr td:nth-child(1) {
+    padding-right: 10px;
+}
+
+.proSingleItem td {
+    line-height: 24px;
+}
+
+.projectListSingle {
+    margin: 0 2px;
+    padding: 6px 6px 6px 10px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #eaeaea;
+    /*border-radius: 5px;*/
+}
+
+.projectListSingle:hover {
+    /*box-shadow: 0 0 10px 0 #e4e4e4;*/
+}
+
+.addedProject {
+    height: calc(100% - 50px);
+}
+
+.analysisResTable {
+    width: 100%;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.analysisResTable td {
+    border: 1px solid #eaeaea;
+}
+
+.analysisResTable td:hover {
+    color: #5952c3;
+}
+
+.endEditBtn {
+    position: absolute;
+    right: 30px;
+    top: 50px;
+    z-index: 1000;
+    cursor: pointer;
+    background: #1c96f1;
+    padding: 6px;
+    color: #fff;
+    border-radius: 3px;
+}
+
+#leftMapOutDiv {
+    border: 1px solid rgb(0, 0, 0);
+    position: absolute;
+    /*inset: 0px 400px 0px 0px;*/
+}
+
+#rightDiv {
+    position: absolute;
+    /*inset: 0px 0px 0px 721px;*/
+    width: auto;
+    display: block;
+}
+
+.faxxTable {
+    width: 100%;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.faxxTable .faxxLabel {
+    width: 80px;
+    padding: 0 6px;
+    text-align-last: justify;
+}
+
+.faxxTable .faxxInput:focus {
+    box-shadow: 0 0 10px 0 #d6d4d4;
+}
+
+.faxxTable .faxxInput {
+    border: 1px solid #eaeaea;
+    width: 100%;
+    line-height: 30px;
+    text-indent: 6px;
+    margin: 2px 0;
+}
+
+#xmxxEditDv {
+    height: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.deleteProjectClass {
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+}
+
+.xzTitle, .itemXzTitle {
+    line-height: 32px;
+    background: #f7f7f7;
+    margin-left: 3px;
+    color: #333;
+    padding: 0 6px;
+    font-size: 15px;
+    border-top: 1px solid #ddd;
+    /* background: #fff; */
+    border-bottom: 1px solid #ddd;
+}
+
+.proAddAction, .xmxzAction {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #8a8a8a;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 2px;
+    color: #8a8a8a;
+    margin: 5px 6px 0 0;
+    cursor: pointer;
+}
+
+xmxzAction .xmxzDelete {
+    font-size: 24px;
+}
+
+#xmxzGis .blue_block {
+    margin-top: 8px;
+    margin-left: 2px;
+    height: 18px;
+}
+
+.xmxzAction {
+}
+
+.projectTitleText {
+    width: calc(100% - 80px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.basicInfoStr {
+    border-collapse: collapse;
+}
+
+.basicInfoStr td {
+    border: 1px solid #eaeaea;
+    padding: 3px;
+}
+
+.indent10px {
+    padding-left: 18px;
+    font-size: 13px;
+    color: #666;
+    word-break: break-all;
+}
+.toggleAnalysisResTitle {
+    padding-left: 10px;
+}
+span.analysisTitle {
+    color: #FF9800;
+}

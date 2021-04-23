@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="${basePath}/static/css/oa/address/personal.css">
+    <link href="${basePath}/static/css/oa/address/personal.css" rel="stylesheet"/>
+    <link href="${basePath}/static/lib/mui/css/mui.min.css" rel="stylesheet"/>
+    <#include "../include.ftl"/>
+    <!--<link rel="stylesheet" type="text/css" href="http://localhost:8088/dzzw/static/fonts/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8088/dzzw/static/appMapFont/iconfont.css">-->
+    <style type="text/css">
+        #userImg {
+            font-size: 80px;
+            color: #f7f7f7;
+            text-align: center;
+            line-height: 130px;
+        }
+
+        .userNameInfo {
+            font-size: 18px;
+            line-height: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .apkShare {
+            color: #1269d3;
+            padding-right: 12px;
+            font-size: 18px;
+            padding: 0 12px 0 4px;
+        }
+
+        .btn_qh {
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            border-radius: 4px;
+            background-color: #2c8ef1;
+            font-size: 14px;
+            color: #ffffff;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        .overflow {
+            overflow: hidden;
+        }
+
+        #onemapUserInfoDetail .phoneNumber {
+            border-left: 1px solid #f1eaea;
+            border-radius: 0;
+        }
+
+    </style>
+    <link rel="stylesheet"
+          href="../../../../../../../../../../zy-common-web/src/main/webapp/WEB-INF/static/lib/layui/css/layui.css">
+</head>
+<body>
+<!-- 主页面容器 -->
+<header class="mui-bar mui-bar-nav" style="box-shadow: none">
+    <a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">个人资料</h1>
+</header>
+<div class="mui-content" id="onemapUserInfoDetail" style="background-color: transparent;">
+    <div class="mui-input-row">
+        <div class="overflow" style="position:relative;margin-top: 5px;background: #fff">
+            <label style="text-align: center">手机号：</label>
+            <input type="text" class="mui-input mui-input-clear phoneNumber" data-input-clear="3">
+            <span class="mui-icon mui-icon-clear mui-hidden"></span>
+        </div>
+        <button type="button" class="mui-btn mui-btn-blue mui-btn-block"
+                style="width: 70%;margin: 20px auto 0;float: initial;">确认修改
+        </button>
+    </div>
+</div>
+
+</body>
+
+
+<!--<script src="${basePath}/static/js/oa/app/center/appcenter.js"></script>-->
+</html>

@@ -1,0 +1,155 @@
+/**
+该文件以下页面会用到
+配置文件layer/index
+配置文件subject/index
+ */
+#map {
+    height: 100%;
+    background-color: #eeeeee;
+    background-color: #fff;
+    padding: 0 3px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#configMap {
+    height: 100%;
+    background-color: #eeeeee;
+    background-color: #fff;
+}
+
+#resource {
+    float: left;
+    /*width: 30%;*/
+    box-sizing: border-box;
+}
+
+html, body, #wrapper {
+    height: 100%;
+}
+.ztree {
+    height: calc(100% - 72px);
+    overflow: auto;
+}
+.ztree * {
+    font-size: 16px;
+}
+
+/*处理拖动过程中造成的文字选中现象*/
+.toolbar .tool_con div::selection {
+    background: #fff;
+    color: #000000;
+}
+
+/*[draggable="true"]*/
+.sortable-ghost {
+    background: #1e9fff !important;
+    color: #fff !important;
+}
+
+#resource > div {
+    height: 100%;
+    border-right: 1px solid #1269d3;
+    box-sizing: border-box;
+}
+
+.toolBarEyeOpen {
+    color: #0983C4;
+}
+
+.selectIconOpen {
+    background: #5FB878;
+    border: 1px solid #5fb878;
+}
+
+.toolBarEyeClose {
+    color: #ACACAC;
+}
+
+
+.selectIconClose {
+    background: #ffffff;
+    border: 1px solid #aaa;
+    box-sizing: border-box;
+}
+
+#updateTree {
+    border-bottom: 1px solid #e4dbdb;
+    padding: 10px;
+}
+
+.configTableTitle {
+    border-bottom: 2px solid #d9d9d9;
+    color: #333333;
+    font-weight: 800;
+    background: #f2f2f2;
+}
+
+.configTableTitleMenu {
+    border-bottom: 2px solid #d9d9d9;
+    color: #333333;
+    font-weight: 800;
+    background: #f2f2f2;
+}
+
+.configTableTitleMenu > div, .configTableBody > div > div {
+    width: calc(1 / 4 * (100% - 400px));
+    line-height: 20px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.configTableTitleSub {
+    border-bottom: 2px solid #d9d9d9;
+    color: #333333;
+    font-weight: 800;
+    background: #f2f2f2;
+}
+
+.configTableTitle > div, .configTableBody > div > div {
+    width: calc(1 / 4 * (100% - 460px));
+    line-height: 20px;
+    text-align: center;
+    padding: 10px 0;
+}
+.configTableTitleSub > div, .configTableBodySub > div > div {
+    width: calc(1 / 7 * (100% - 600px));
+    line-height: 20px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.configTableBody .overflow, .configTableBodySub .overflow {
+    border-bottom: #d7d7d7 1px solid;
+}
+
+.configTableBody .layui-input, .configTableBodySub .layui-input, .layui-textarea {
+    width: 90%;
+    text-align: center;
+}
+
+#map .mouseCoordinateAndMapLevelDiv {
+    /*width: 100%;*/
+    /*bottom: 0px;*/
+    /*position: absolute;*/
+    /*left: 0px;*/
+    /*z-index: 10;*/
+    /*background: rgb(0, 0, 0);*/
+    /*font-size: 12px;*/
+    /*line-height: 20px;*/
+    /*color: rgb(255, 255, 255);*/
+    /*opacity: 0.5;*/
+    /*cursor: initial;*/
+
+    bottom: 0px;
+    position: absolute;
+    left: 170px;
+    right: 80px;
+    z-index: 10;
+    background: rgb(0, 0, 0);
+    font-size: 12px;
+    line-height: 20px;
+    color: rgb(255, 255, 255);
+    opacity: 0.3;
+    cursor: initial;
+}

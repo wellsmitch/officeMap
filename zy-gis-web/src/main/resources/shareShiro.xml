@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="shiroWebRealm" class="com.zy.core.auth.ShiroWebRealm">
+		<property name="sysId" value="${sysId}" />
+		<property name="auth" ref="auth" />
+		<property name="credentialsMatcher" ref="credentialsMatcher" />
+	</bean>
+
+	<bean id="anyRoleAuthorizationFilter" class="com.zy.core.auth.ShiroAnyRoleAuthorizationFilter" />
+
+	<!-- 自定义sessionDao -->
+	<bean id="sessionDao" class="com.zy.core.auth.ShiroRedisSessionDAO">
+		<property name="ehCacheManager" ref="ehCacheManager" />
+		<property name="redisCacheManager" ref="redisCacheManager" />
+	</bean>
+	<!-- 自定义 sessionFactory -->
+	<bean id="sessionFactory" class="com.zy.core.auth.ShiroSessionFactory" />
+
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="sessionDAO" ref="sessionDao" />
+		<!-- 默认JSESSIONID，同tomcat/jetty在cookie中缓存标识相同，修改用于防止访问404页面时，容器生成的标识把shiro的覆盖掉 -->
+		<property name="sessionIdCookie">
+			<bean class="org.apache.shiro.web.servlet.SimpleCookie">
+				<constructor-arg name="name" value="SHRIOSESSIONID" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shiroWebRealm" />
+		<property name="sessionManager" ref="sessionManager" />
+	</bean>
+
+	<bean id="shiroFilter" class="com.zy.core.auth.ShiroWebFilterFactoryBean">
+		<!-- Shiro的核心安全接口，这个属性是必须的 -->
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+		<property name="loginUrl" value="/login"></property>
+		<property name="filters">
+			<map>
+				<entry key="anyRole" value-ref="anyRoleAuthorizationFilter" />
+			</map>
+		</property>
+		<!-- 登录成功后要跳转的连接 -->
+		<!-- <property name="successUrl" value="/main" ></property> -->
+		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
+		<property name="unauthorizedUrl" value="/noAuthority"></property>
+		<property name="sysId" value="${sysId}" />
+		<property name="auth" ref="auth" />
+		<property name="filterChainDefinitions">
+			<value>
+				/static/**=anon
+				/logout=logout
+				/*=anon
+			</value>
+		</property>
+	</bean>
+
+	<!-- 凭证匹配器 -->
+	<bean id="credentialsMatcher"
+		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<!-- 选用MD5散列算法 -->
+		<property name="hashAlgorithmName" value="MD5" />
+		<!-- 进行1次加密 -->
+		<property name="hashIterations" value="2" />
+		<property name="storedCredentialsHexEncoded" value="false" />
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>

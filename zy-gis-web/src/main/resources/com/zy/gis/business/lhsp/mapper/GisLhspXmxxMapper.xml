@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.gis.business.lhsp.mapper.GisLhspXmxxMapper">
+    <sql id="Base_Column_List">
+        GIS_LHSP_XMXX.ID,GIS_LHSP_XMXX.XMBH,GIS_LHSP_XMXX.XMDM,GIS_LHSP_XMXX.XMMC,GIS_LHSP_XMXX.XZQH,GIS_LHSP_XMXX.XMSZQ,GIS_LHSP_XMXX.SCCHLX,GIS_LHSP_XMXX.NKGSJ,GIS_LHSP_XMXX.NJCSJ,GIS_LHSP_XMXX.JSDD,GIS_LHSP_XMXX.JSGMJNR,GIS_LHSP_XMXX.JSXZ,GIS_LHSP_XMXX.XMGLBH,GIS_LHSP_XMXX.XMZJSX,GIS_LHSP_XMXX.LXLX,GIS_LHSP_XMXX.XMLX,GIS_LHSP_XMXX.GBHY,GIS_LHSP_XMXX.FQBM,GIS_LHSP_XMXX.FQRXM,GIS_LHSP_XMXX.FQRLXDH,GIS_LHSP_XMXX.JSDW,GIS_LHSP_XMXX.DWZZLX,GIS_LHSP_XMXX.DWZZHM,GIS_LHSP_XMXX.LXR,GIS_LHSP_XMXX.LXRZJHM,GIS_LHSP_XMXX.LXRDH,GIS_LHSP_XMXX.LXRDZYJ,GIS_LHSP_XMXX.ZTZE,GIS_LHSP_XMXX.DQNDZTZ,GIS_LHSP_XMXX.QTNDJHTZ,GIS_LHSP_XMXX.DQNDJDJH,GIS_LHSP_XMXX.QTNDJDJH,GIS_LHSP_XMXX.MQJZQK,GIS_LHSP_XMXX.CREATE_TIME,GIS_LHSP_XMXX.CREATE_USER,GIS_LHSP_XMXX.MODIFY_TIME,GIS_LHSP_XMXX.MODIFY_USER,GIS_LHSP_XMXX.STATUS,GIS_LHSP_XMXX.DEL_FLAG
+    </sql>
+    <sql id="Column_List">
+        <include refid="Base_Column_List"/>
+    </sql>
+    <sql id="pageParams">
+        <if test="params != null">
+            <if test="params.beginDate != null"> and GIS_LHSP_XMXX.create_time &gt;= #{params.beginDate} </if>
+            <if test="params.endDate != null"> and GIS_LHSP_XMXX.create_time &lt;= #{params.endDate} </if>
+            <if test="params.id != null"> and GIS_LHSP_XMXX.ID = #{params.id} </if>
+            <if test="params.xmbh != null"> and GIS_LHSP_XMXX.XMBH = #{params.xmbh} </if>
+            <if test="params.xmdm != null"> and GIS_LHSP_XMXX.XMDM = #{params.xmdm} </if>
+            <if test="params.xmmc != null"> and GIS_LHSP_XMXX.XMMC = #{params.xmmc} </if>
+            <if test="params.xzqh != null"> and GIS_LHSP_XMXX.XZQH = #{params.xzqh} </if>
+            <if test="params.xmszq != null"> and GIS_LHSP_XMXX.XMSZQ = #{params.xmszq} </if>
+            <if test="params.scchlx != null"> and GIS_LHSP_XMXX.SCCHLX = #{params.scchlx} </if>
+            <if test="params.nkgsj != null"> and GIS_LHSP_XMXX.NKGSJ = #{params.nkgsj} </if>
+            <if test="params.njcsj != null"> and GIS_LHSP_XMXX.NJCSJ = #{params.njcsj} </if>
+            <if test="params.jsdd != null"> and GIS_LHSP_XMXX.JSDD = #{params.jsdd} </if>
+            <if test="params.jsgmjnr != null"> and GIS_LHSP_XMXX.JSGMJNR = #{params.jsgmjnr} </if>
+            <if test="params.jsxz != null"> and GIS_LHSP_XMXX.JSXZ = #{params.jsxz} </if>
+            <if test="params.xmglbh != null"> and GIS_LHSP_XMXX.XMGLBH = #{params.xmglbh} </if>
+            <if test="params.xmzjsx != null"> and GIS_LHSP_XMXX.XMZJSX = #{params.xmzjsx} </if>
+            <if test="params.lxlx != null"> and GIS_LHSP_XMXX.LXLX = #{params.lxlx} </if>
+            <if test="params.xmlx != null"> and GIS_LHSP_XMXX.XMLX = #{params.xmlx} </if>
+            <if test="params.gbhy != null"> and GIS_LHSP_XMXX.GBHY = #{params.gbhy} </if>
+            <if test="params.fqbm != null"> and GIS_LHSP_XMXX.FQBM = #{params.fqbm} </if>
+            <if test="params.fqrxm != null"> and GIS_LHSP_XMXX.FQRXM = #{params.fqrxm} </if>
+            <if test="params.fqrlxdh != null"> and GIS_LHSP_XMXX.FQRLXDH = #{params.fqrlxdh} </if>
+            <if test="params.jsdw != null"> and GIS_LHSP_XMXX.JSDW = #{params.jsdw} </if>
+            <if test="params.dwzzlx != null"> and GIS_LHSP_XMXX.DWZZLX = #{params.dwzzlx} </if>
+            <if test="params.dwzzhm != null"> and GIS_LHSP_XMXX.DWZZHM = #{params.dwzzhm} </if>
+            <if test="params.lxr != null"> and GIS_LHSP_XMXX.LXR = #{params.lxr} </if>
+            <if test="params.lxrzjhm != null"> and GIS_LHSP_XMXX.LXRZJHM = #{params.lxrzjhm} </if>
+            <if test="params.lxrdh != null"> and GIS_LHSP_XMXX.LXRDH = #{params.lxrdh} </if>
+            <if test="params.lxrdzyj != null"> and GIS_LHSP_XMXX.LXRDZYJ = #{params.lxrdzyj} </if>
+            <if test="params.ztze != null"> and GIS_LHSP_XMXX.ZTZE = #{params.ztze} </if>
+            <if test="params.dqndztz != null"> and GIS_LHSP_XMXX.DQNDZTZ = #{params.dqndztz} </if>
+            <if test="params.qtndjhtz != null"> and GIS_LHSP_XMXX.QTNDJHTZ = #{params.qtndjhtz} </if>
+            <if test="params.dqndjdjh != null"> and GIS_LHSP_XMXX.DQNDJDJH = #{params.dqndjdjh} </if>
+            <if test="params.qtndjdjh != null"> and GIS_LHSP_XMXX.QTNDJDJH = #{params.qtndjdjh} </if>
+            <if test="params.mqjzqk != null"> and GIS_LHSP_XMXX.MQJZQK = #{params.mqjzqk} </if>
+            <if test="params.createTime != null"> and GIS_LHSP_XMXX.CREATE_TIME = #{params.createTime} </if>
+            <if test="params.createUser != null"> and GIS_LHSP_XMXX.CREATE_USER = #{params.createUser} </if>
+            <if test="params.modifyTime != null"> and GIS_LHSP_XMXX.MODIFY_TIME = #{params.modifyTime} </if>
+            <if test="params.modifyUser != null"> and GIS_LHSP_XMXX.MODIFY_USER = #{params.modifyUser} </if>
+            <if test="params.status != null"> and GIS_LHSP_XMXX.STATUS = #{params.status} </if>
+            <if test="params.delFlag != null"> and GIS_LHSP_XMXX.DEL_FLAG = #{params.delFlag} </if>
+        </if>
+    </sql>
+    <insert id="insert">
+        insert into GIS_LHSP_XMXX(<include refid="Base_Column_List"></include>) values
+        (#{id},#{xmbh},#{xmdm},#{xmmc},#{xzqh},#{xmszq},#{scchlx},#{nkgsj},#{njcsj},#{jsdd},#{jsgmjnr},#{jsxz},#{xmglbh},#{xmzjsx},#{lxlx},#{xmlx},#{gbhy},#{fqbm},#{fqrxm},#{fqrlxdh},#{jsdw},#{dwzzlx},#{dwzzhm},#{lxr},#{lxrzjhm},#{lxrdh},#{lxrdzyj},#{ztze},#{dqndztz},#{qtndjhtz},#{dqndjdjh},#{qtndjdjh},#{mqjzqk},#{createTime},#{createUser},#{modifyTime},#{modifyUser},#{status},#{delFlag})
+    </insert>
+    <update id="update">
+        update GIS_LHSP_XMXX set 
+            XMBH = #{xmbh},XMDM = #{xmdm},XMMC = #{xmmc},XZQH = #{xzqh},XMSZQ = #{xmszq},SCCHLX = #{scchlx},NKGSJ = #{nkgsj},NJCSJ = #{njcsj},JSDD = #{jsdd},JSGMJNR = #{jsgmjnr},JSXZ = #{jsxz},XMGLBH = #{xmglbh},XMZJSX = #{xmzjsx},LXLX = #{lxlx},XMLX = #{xmlx},GBHY = #{gbhy},FQBM = #{fqbm},FQRXM = #{fqrxm},FQRLXDH = #{fqrlxdh},JSDW = #{jsdw},DWZZLX = #{dwzzlx},DWZZHM = #{dwzzhm},LXR = #{lxr},LXRZJHM = #{lxrzjhm},LXRDH = #{lxrdh},LXRDZYJ = #{lxrdzyj},ZTZE = #{ztze},DQNDZTZ = #{dqndztz},QTNDJHTZ = #{qtndjhtz},DQNDJDJH = #{dqndjdjh},QTNDJDJH = #{qtndjdjh},MQJZQK = #{mqjzqk},CREATE_TIME = #{createTime},CREATE_USER = #{createUser},MODIFY_TIME = #{modifyTime},MODIFY_USER = #{modifyUser},STATUS = #{status},DEL_FLAG = #{delFlag}
+        where id = #{id}
+    </update>
+    <update id="updateSelective">
+        update GIS_LHSP_XMXX 
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="xmbh != null"> XMBH = #{xmbh}, </if>
+            <if test="xmdm != null"> XMDM = #{xmdm}, </if>
+            <if test="xmmc != null"> XMMC = #{xmmc}, </if>
+            <if test="xzqh != null"> XZQH = #{xzqh}, </if>
+            <if test="xmszq != null"> XMSZQ = #{xmszq}, </if>
+            <if test="scchlx != null"> SCCHLX = #{scchlx}, </if>
+            <if test="nkgsj != null"> NKGSJ = #{nkgsj}, </if>
+            <if test="njcsj != null"> NJCSJ = #{njcsj}, </if>
+            <if test="jsdd != null"> JSDD = #{jsdd}, </if>
+            <if test="jsgmjnr != null"> JSGMJNR = #{jsgmjnr}, </if>
+            <if test="jsxz != null"> JSXZ = #{jsxz}, </if>
+            <if test="xmglbh != null"> XMGLBH = #{xmglbh}, </if>
+            <if test="xmzjsx != null"> XMZJSX = #{xmzjsx}, </if>
+            <if test="lxlx != null"> LXLX = #{lxlx}, </if>
+            <if test="xmlx != null"> XMLX = #{xmlx}, </if>
+            <if test="gbhy != null"> GBHY = #{gbhy}, </if>
+            <if test="fqbm != null"> FQBM = #{fqbm}, </if>
+            <if test="fqrxm != null"> FQRXM = #{fqrxm}, </if>
+            <if test="fqrlxdh != null"> FQRLXDH = #{fqrlxdh}, </if>
+            <if test="jsdw != null"> JSDW = #{jsdw}, </if>
+            <if test="dwzzlx != null"> DWZZLX = #{dwzzlx}, </if>
+            <if test="dwzzhm != null"> DWZZHM = #{dwzzhm}, </if>
+            <if test="lxr != null"> LXR = #{lxr}, </if>
+            <if test="lxrzjhm != null"> LXRZJHM = #{lxrzjhm}, </if>
+            <if test="lxrdh != null"> LXRDH = #{lxrdh}, </if>
+            <if test="lxrdzyj != null"> LXRDZYJ = #{lxrdzyj}, </if>
+            <if test="ztze != null"> ZTZE = #{ztze}, </if>
+            <if test="dqndztz != null"> DQNDZTZ = #{dqndztz}, </if>
+            <if test="qtndjhtz != null"> QTNDJHTZ = #{qtndjhtz}, </if>
+            <if test="dqndjdjh != null"> DQNDJDJH = #{dqndjdjh}, </if>
+            <if test="qtndjdjh != null"> QTNDJDJH = #{qtndjdjh}, </if>
+            <if test="mqjzqk != null"> MQJZQK = #{mqjzqk}, </if>
+            <if test="createTime != null"> CREATE_TIME = #{createTime}, </if>
+            <if test="createUser != null"> CREATE_USER = #{createUser}, </if>
+            <if test="modifyTime != null"> MODIFY_TIME = #{modifyTime}, </if>
+            <if test="modifyUser != null"> MODIFY_USER = #{modifyUser}, </if>
+            <if test="status != null"> STATUS = #{status}, </if>
+            <if test="delFlag != null"> DEL_FLAG = #{delFlag}, </if>
+        </trim>
+        where id = #{id}
+    </update>
+    <update id="delete">
+        update GIS_LHSP_XMXX set DEL_FLAG = 1 where id = #{id}
+    </update>
+    <update id="deletes">
+        update GIS_LHSP_XMXX set DEL_FLAG = 1 where id in 
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    <select id="getById" resultType="com.zy.gis.business.lhsp.entity.GisLhspXmxx">
+        select <include refid="Base_Column_List" /> from GIS_LHSP_XMXX where id = #{id}
+    </select>
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(1) from GIS_LHSP_XMXX where 1 = 1 <include refid="pageParams"/>
+    </select>
+    <select id="list" resultType="com.zy.gis.business.lhsp.vo.GisLhspXmxxVo">
+        select <include refid="Column_List" /> from GIS_LHSP_XMXX
+        where 1 = 1 <include refid="pageParams"/>
+        order by GIS_LHSP_XMXX.CREATE_TIME desc
+    </select>
+</mapper>

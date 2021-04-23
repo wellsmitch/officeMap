@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.gis.business.xmxz.mapper.XmxzXmfaMapper">
+    <sql id="Base_Column_List">
+        XMXZ_XMFA.ID,XMXZ_XMFA.FAMC,XMXZ_XMFA.ZL,XMXZ_XMFA.MJ,XMXZ_XMFA.MAPPING_VALUE,XMXZ_XMFA.MAPPING_KEY,XMXZ_XMFA.CREATE_TIME,XMXZ_XMFA.CREATE_USER,XMXZ_XMFA.MODIFY_TIME,XMXZ_XMFA.MODIFY_USER,XMXZ_XMFA.STATUS,XMXZ_XMFA.DEL_FLAG,XMXZ_XMFA.XMXX_ID
+    </sql>
+    <sql id="Column_List">
+        <include refid="Base_Column_List"/>
+    </sql>
+    <sql id="pageParams">
+        <if test="params != null">
+            <if test="params.beginDate != null"> and XMXZ_XMFA.create_time &gt;= #{params.beginDate} </if>
+            <if test="params.endDate != null"> and XMXZ_XMFA.create_time &lt;= #{params.endDate} </if>
+            <if test="params.id != null"> and XMXZ_XMFA.ID = #{params.id} </if>
+            <if test="params.famc != null"> and XMXZ_XMFA.FAMC = #{params.famc} </if>
+            <if test="params.zl != null"> and XMXZ_XMFA.ZL = #{params.zl} </if>
+            <if test="params.mj != null"> and XMXZ_XMFA.MJ = #{params.mj} </if>
+            <if test="params.mappingValue != null"> and XMXZ_XMFA.MAPPING_VALUE = #{params.mappingValue} </if>
+            <if test="params.mappingKey != null"> and XMXZ_XMFA.MAPPING_KEY = #{params.mappingKey} </if>
+            <if test="params.createTime != null"> and XMXZ_XMFA.CREATE_TIME = #{params.createTime} </if>
+            <if test="params.createUser != null"> and XMXZ_XMFA.CREATE_USER = #{params.createUser} </if>
+            <if test="params.modifyTime != null"> and XMXZ_XMFA.MODIFY_TIME = #{params.modifyTime} </if>
+            <if test="params.modifyUser != null"> and XMXZ_XMFA.MODIFY_USER = #{params.modifyUser} </if>
+            <if test="params.status != null"> and XMXZ_XMFA.STATUS = #{params.status} </if>
+            <if test="params.delFlag != null"> and XMXZ_XMFA.DEL_FLAG = #{params.delFlag} </if>
+            <if test="params.xmxxId != null"> and XMXZ_XMFA.XMXX_ID = #{params.xmxxId} </if>
+        </if>
+    </sql>
+    <insert id="insert">
+        insert into XMXZ_XMFA(<include refid="Base_Column_List"></include>) values
+        (#{id},#{famc},#{zl},#{mj},#{mappingValue},#{mappingKey},#{createTime},#{createUser},#{modifyTime},#{modifyUser},#{status},#{delFlag},#{xmxxId})
+    </insert>
+    <update id="update">
+        update XMXZ_XMFA set 
+            FAMC = #{famc},ZL = #{zl},MJ = #{mj},MAPPING_VALUE = #{mappingValue},MAPPING_KEY = #{mappingKey},CREATE_TIME = #{createTime},CREATE_USER = #{createUser},MODIFY_TIME = #{modifyTime},MODIFY_USER = #{modifyUser},STATUS = #{status},DEL_FLAG = #{delFlag},XMXX_ID = #{xmxxId}
+        where id = #{id}
+    </update>
+    <update id="updateSelective">
+        update XMXZ_XMFA 
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="famc != null"> FAMC = #{famc}, </if>
+            <if test="zl != null"> ZL = #{zl}, </if>
+            <if test="mj != null"> MJ = #{mj}, </if>
+            <if test="mappingValue != null"> MAPPING_VALUE = #{mappingValue}, </if>
+            <if test="mappingKey != null"> MAPPING_KEY = #{mappingKey}, </if>
+            <if test="createTime != null"> CREATE_TIME = #{createTime}, </if>
+            <if test="createUser != null"> CREATE_USER = #{createUser}, </if>
+            <if test="modifyTime != null"> MODIFY_TIME = #{modifyTime}, </if>
+            <if test="modifyUser != null"> MODIFY_USER = #{modifyUser}, </if>
+            <if test="status != null"> STATUS = #{status}, </if>
+            <if test="delFlag != null"> DEL_FLAG = #{delFlag}, </if>
+            <if test="xmxxId != null"> XMXX_ID = #{xmxxId}, </if>
+        </trim>
+        where id = #{id}
+    </update>
+    <update id="delete">
+        update XMXZ_XMFA set DEL_FLAG = 1 where id = #{id}
+    </update>
+    <update id="deletes">
+        update XMXZ_XMFA set DEL_FLAG = 1 where id in 
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    <select id="getById" resultType="com.zy.gis.business.xmxz.entity.XmxzXmfa">
+        select <include refid="Base_Column_List" /> from XMXZ_XMFA where id = #{id}
+    </select>
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(1) from XMXZ_XMFA where 1 = 1 <include refid="pageParams"/>
+    </select>
+    <select id="list" resultType="com.zy.gis.business.xmxz.vo.XmxzXmfaVo">
+        select <include refid="Column_List" /> from XMXZ_XMFA
+        where 1 = 1 <include refid="pageParams"/>
+        order by XMXZ_XMFA.CREATE_TIME desc
+    </select>
+</mapper>
